@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ARPM Mining - Login and Home</title>
+    <title>ARPM Mining - Mobile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,29 +14,49 @@
             box-sizing: border-box;
         }
         body {
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') no-repeat center center fixed;
+            background-size: cover;
             font-family: 'Poppins', sans-serif;
             color: #fff;
-            height: 100vh;
-            overflow-x: hidden;
+            min-height: 100vh;
             font-size: 16px;
+            overflow-x: hidden;
+            position: relative;
         }
-        .login-container, .signup-container, .reset-container, .home-container, .profile-container, .income-container, .invite-container {
+        .container {
             width: 100%;
             max-width: 400px;
-            margin: 20px auto;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
+            margin: 12px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5); /* Light overlay for readability */
             border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
             text-align: center;
+            position: relative;
+            z-index: 1;
+            margin-top: 220px; /* Adjusted to match logo height */
         }
-        .login-container h2, .signup-container h2, .reset-container h2, .home-container h2, .income-container h2, .invite-container h2, .profile-container h2 {
-            font-size: 1.8rem;
+        #home-container {
+            position: relative;
+            min-height: 500px;
+            width: 100%;
+            max-width: 400px;
+            margin: 220px auto 20px; /* Adjusted margin for slight bottom space */
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(30, 58, 138, 0.8); /* Deep blue with slight transparency */
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 16px rgba(30, 58, 138, 0.3); /* Subtle blue shadow for depth */
+        }
+        #home-container > * {
+            position: relative;
+            z-index: 1;
+        }
+        h2 {
+            font-size: 1.375rem;
             font-weight: 700;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         .form-group {
             margin-bottom: 12px;
@@ -45,120 +66,69 @@
             border: none;
             color: #fff;
             border-radius: 8px;
-            font-size: 0.9rem;
-            padding: 8px;
+            padding: 10px;
+            font-size: 1rem;
             width: 100%;
         }
         .form-control::placeholder {
             color: #d1d5db;
+            font-size: 1rem;
         }
-        .btn-login, .btn-danger, .btn-success {
-            background: linear-gradient(45deg, #2563eb, #60a5fa);
+        .btn {
             border: none;
-            transition: transform 0.2s, box-shadow 0.3s;
-            width: 100%;
-            font-size: 0.9rem;
+            border-radius: 8px;
             padding: 10px;
+            font-size: 1.125rem;
+            width: 100%;
+            transition: transform 0.2s;
         }
-        .btn-danger {
-            background: linear-gradient(45deg, #ef4444, #f87171);
+        .btn-primary {
+            background: linear-gradient(45deg, #2563eb, #60a5fa);
         }
         .btn-success {
             background: linear-gradient(45deg, #22c55e, #86efac);
         }
-        .btn-login:hover, .btn-danger:hover, .btn-success:hover {
+        .btn-danger {
+            background: linear-gradient(45deg, #ef4444, #f87171);
+        }
+        .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
-        .home-container, .income-container, .invite-container, .profile-container {
-            display: none;
-            padding-bottom: 60px;
-        }
-        .mining-circle {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(45deg, #2563eb, #60a5fa);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            font-weight: 600;
-            margin: 15px auto;
+        .start-mining-btn {
+            background: linear-gradient(45deg, #22c55e, #86efac);
+            border: none;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            margin: 15px 0;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.3s;
+            transition: transform 0.2s;
         }
-        .mining-circle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        .start-mining-btn:hover {
+            transform: translateY(-2px);
         }
-        .mining-circle.disabled {
-            background: #4a5568;
+        .start-mining-btn:disabled {
+            background: #d1d5db;
             cursor: not-allowed;
         }
         .timer {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 500;
             margin: 15px auto;
-        }
-        .balance-info {
-            margin: 15px 0;
             font-size: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px;
-            border-radius: 8px;
         }
-        .profile-info {
+        .balance-info, .profile-info {
             margin: 15px 0;
-            font-size: 0.9rem;
             background: rgba(255, 255, 255, 0.15);
             padding: 10px;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s;
-        }
-        .profile-info:hover {
-            transform: scale(1.02);
-        }
-        .profile-info p {
-            margin: 5px 0;
-            font-weight: 300;
-        }
-        .profile-info p strong {
-            font-weight: 600;
-            color: #60a5fa;
-        }
-        .ad-container, .bottom-ad-container, .profile-ad-container {
-            margin: 15px 0;
-            text-align: center;
-            width: 100%;
-        }
-        .ad-container iframe, .ad-container div, .bottom-ad-container iframe, .bottom-ad-container div, .profile-ad-container iframe, .profile-ad-container div {
-            margin: 0 auto;
-            max-width: 100%;
-            height: auto;
-        }
-        .custom-ad {
-            display: block;
-            margin: 50px auto 0; /* 50px margin-top to keep it 1 inch above heading */
-            max-width: 728px;
-            width: 100%;
-        }
-        .custom-ad img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-            transition: transform 0.2s;
-        }
-        .custom-ad img:hover {
-            transform: scale(1.02);
+            font-size: 1rem;
         }
         .navbar-bottom {
             position: fixed;
@@ -166,28 +136,22 @@
             left: 0;
             right: 0;
             background: rgba(30, 58, 138, 0.9);
-            border-top: 1px solid #2b6cb0;
             display: none;
             justify-content: space-around;
             padding: 8px 0;
             z-index: 1000;
-            backdrop-filter: blur(5px);
         }
         .navbar-bottom a {
-            text-align: center;
             color: #fff;
             text-decoration: none;
             font-size: 10px;
-            transition: color 0.3s;
             flex: 1;
+            text-align: center;
         }
         .navbar-bottom a i {
             display: block;
             font-size: 20px;
             margin-bottom: 3px;
-        }
-        .navbar-bottom a:hover {
-            color: #60a5fa;
         }
         .navbar-bottom a.active {
             color: #60a5fa;
@@ -195,34 +159,26 @@
         .link {
             color: #60a5fa;
             text-decoration: none;
-            margin: 0 5px;
-            font-size: 0.85rem;
+            font-size: 0.875rem;
         }
         .link:hover {
             text-decoration: underline;
         }
+        .footer-text {
+            font-size: 0.875rem;
+            margin-top: 15px;
+        }
         .hidden {
             display: none;
-        }
-        a.social-link {
-            color: #fff !important;
-            text-decoration: none;
-        }
-        a.social-link:hover {
-            text-decoration: underline;
         }
         .copy-btn {
             background: linear-gradient(45deg, #2563eb, #60a5fa);
             border: none;
             color: #fff;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 1.125rem;
             margin-left: 10px;
-        }
-        .copy-btn:hover {
-            background: linear-gradient(45deg, #1e40af, #3b82f6);
         }
         .logout-btn {
             background: linear-gradient(45deg, #ef4444, #f87171);
@@ -230,55 +186,152 @@
             color: #fff;
             padding: 10px 20px;
             border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.125rem;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 20px auto;
-            width: 200px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 180px;
         }
         .logout-btn i {
             margin-right: 8px;
+            font-size: 1.2rem;
         }
-        .logout-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(45deg, #dc2626, #ef4444);
+        .income-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.2s;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .income-card:hover {
+            transform: translateY(-5px);
+        }
+        .youtube-card {
+            background: linear-gradient(45deg, #ff0000, #ff6666);
+        }
+        .x-card {
+            background: linear-gradient(45deg, #000000, #333333);
+        }
+        .income-card h3 {
+            font-size: 1.375rem;
+            margin-bottom: 10px;
+        }
+        .income-card p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        .income-card .btn {
+            font-size: 1.125rem;
+            padding: 10px 20px;
+            width: auto;
+            display: inline-block;
+        }
+        .income-card .btn:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+        }
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 15px auto;
+            background: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center;
+            background-size: cover;
+            border: 3px solid #60a5fa;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        #profile-container {
+            padding-bottom: 80px;
+            min-height: calc(100vh - 150px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #profile-container .profile-info {
+            flex-grow: 1;
+        }
+        .navbar-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            height: 200px; /* Fixed height for logo */
+            z-index: 1000;
+        }
+        .logo-circle {
+            width: 200px;
+            height: 200px;
+            background-color: #007BFF;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
+        }
+        .logo-circle h1 {
+            color: white;
+            font-size: 28px;
+            margin: 0;
+            font-weight: bold;
+            text-align: center;
+        }
+        .logo-circle p {
+            color: white;
+            font-size: 16px;
+            margin: 5px 0 0;
+            text-align: center;
+            letter-spacing: 1px;
         }
         @media (max-width: 576px) {
-            .login-container, .signup-container, .reset-container, .home-container, .profile-container, .income-container, .invite-container {
+            body {
+                font-size: 14px;
+            }
+            .container {
                 margin: 10px;
-                padding: 10px;
+                padding: 15px;
+                max-width: 95%;
+                margin-top: 180px; /* Adjusted for mobile logo height */
             }
-            .login-container h2, .signup-container h2, .reset-container h2, .home-container h2, .income-container h2, .invite-container h2, .profile-container h2 {
-                font-size: 1.5rem;
+            #home-container {
+                min-height: 400px;
+                width: 100%;
+                max-width: 95%;
+                margin: 180px auto 15px; /* Adjusted for mobile */
             }
-            .mining-circle, .timer {
-                width: 100px;
-                height: 100px;
-                font-size: 0.9rem;
-            }
-            .balance-info, .profile-info {
-                font-size: 0.85rem;
-                padding: 6px;
+            h2 {
+                font-size: 1.25rem;
             }
             .form-control {
-                font-size: 0.85rem;
-                padding: 6px;
-            }
-            .btn-login, .btn-danger, .btn-success, .copy-btn, .logout-btn {
-                font-size: 0.85rem;
+                font-size: 0.875rem;
                 padding: 8px;
             }
-            .logout-btn {
-                width: 180px;
+            .form-control::placeholder {
+                font-size: 0.875rem;
+            }
+            .btn, .copy-btn, .logout-btn, .start-mining-btn {
+                font-size: 1rem;
+                padding: 8px;
+            }
+            .timer {
+                width: 90px;
+                height: 90px;
+                font-size: 0.875rem;
+            }
+            .balance-info, .profile-info {
+                font-size: 0.875rem;
+                padding: 8px;
+            }
+            .navbar-bottom {
+                padding: 6px 0;
             }
             .navbar-bottom a {
                 font-size: 9px;
@@ -286,18 +339,118 @@
             .navbar-bottom a i {
                 font-size: 18px;
             }
-            .custom-ad img {
-                max-width: 100%;
+            .link {
+                font-size: 0.75rem;
             }
-            .custom-ad {
-                margin: 30px auto 0; /* Adjusted for mobile to maintain spacing */
+            .footer-text {
+                font-size: 0.75rem;
+            }
+            .navbar-top {
+                padding: 15px 0;
+                height: 150px; /* Adjusted for mobile */
+            }
+            .logo-circle {
+                width: 150px;
+                height: 150px;
+            }
+            .logo-circle h1 {
+                font-size: 22px;
+            }
+            .logo-circle p {
+                font-size: 14px;
+            }
+            .income-card {
+                padding: 15px;
+                margin: 10px 0;
+            }
+            .income-card h3 {
+                font-size: 1.25rem;
+            }
+            .income-card p {
+                font-size: 0.875rem;
+            }
+            .income-card .btn {
+                font-size: 1rem;
+                padding: 8px 15px;
+            }
+            .profile-picture {
+                width: 100px;
+                height: 100px;
+            }
+            #profile-container {
+                padding-bottom: 60px;
+                min-height: calc(100vh - 120px);
+            }
+        }
+        @media (max-width: 400px) {
+            .container {
+                margin: 8px;
+                padding: 12px;
+                margin-top: 160px; /* Adjusted for smaller mobile */
+            }
+            #home-container {
+                min-height: 350px;
+                width: 100%;
+                max-width: 95%;
+                margin: 160px auto 10px; /* Adjusted for smaller mobile */
+            }
+            h2 {
+                font-size: 1.125rem;
+            }
+            .logout-btn {
+                width: 160px;
+                font-size: 1rem;
+            }
+            .timer {
+                width: 80px;
+                height: 80px;
+                font-size: 0.75rem;
+            }
+            .logo-circle {
+                width: 120px;
+                height: 120px;
+            }
+            .logo-circle h1 {
+                font-size: 18px;
+            }
+            .logo-circle p {
+                font-size: 12px;
+            }
+            .income-card {
+                padding: 12px;
+            }
+            .income-card h3 {
+                font-size: 1.125rem;
+            }
+            .income-card p {
+                font-size: 0.75rem;
+            }
+            .income-card .btn {
+                font-size: 0.875rem;
+                padding: 6px 12px;
+            }
+            .profile-picture {
+                width: 80px;
+                height: 80px;
+            }
+            #profile-container {
+                padding-bottom: 50px;
+                min-height: calc(100vh - 110px);
             }
         }
     </style>
 </head>
 <body>
+    <!-- Top Navigation Bar with Logo -->
+    <div class="navbar-top" id="navbar-top" aria-label="ARPM Mining Logo">
+        <div class="logo-circle">
+            <h1>ARPM</h1>
+            <p>MINING</p>
+        </div>
+    </div>
+
     <!-- Login Page -->
-    <div id="login-container" class="login-container">
+    <div id="login-container" class="container">
         <h2>Login</h2>
         <form id="login-form">
             <div class="form-group">
@@ -306,16 +459,16 @@
             <div class="form-group">
                 <input type="password" class="form-control" id="login-password" placeholder="Password" required>
             </div>
-            <button type="submit" class="btn btn-login">Login</button>
-            <p class="mt-3">
-                Don't have an account? <a href="#" id="register-link" class="link" onclick="showSignup()">Register</a><br>
-                Forgot Password? <a href="#" id="reset-link" class="link" onclick="showReset()">Reset Password</a>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <p class="footer-text">
+                <a href="#" class="link" onclick="showReset()">Forgot Password?</a><br>
+                Don't have an account? <a href="#" class="link" onclick="showSignup()">Register</a>
             </p>
         </form>
     </div>
 
     <!-- Registration Page -->
-    <div id="signup-container" class="signup-container hidden">
+    <div id="signup-container" class="container hidden">
         <h2>Register</h2>
         <form id="signup-form">
             <div class="form-group">
@@ -334,116 +487,103 @@
                 <input type="text" class="form-control" id="signup-invite-code" placeholder="Invite Code (Optional)">
             </div>
             <button type="submit" class="btn btn-success">Register</button>
-            <p class="mt-3">
+            <p class="footer-text">
                 Back to Login? <a href="#" class="link" onclick="showLogin()">Login</a>
             </p>
         </form>
     </div>
 
     <!-- Password Reset Page -->
-    <div id="reset-container" class="reset-container hidden">
+    <div id="reset-container" class="container hidden">
         <h2>Reset Password</h2>
         <form id="reset-form">
             <div class="form-group">
                 <input type="email" class="form-control" id="reset-email" placeholder="Email" required>
             </div>
             <button type="submit" class="btn btn-success">Send Reset Link</button>
-            <p class="mt-3">
+            <p class="footer-text">
                 Back to Login? <a href="#" class="link" onclick="showLogin()">Login</a>
             </p>
         </form>
     </div>
 
     <!-- Home Page -->
-    <div id="home-container" class="home-container hidden">
-        <div class="custom-ad">
-            <a href="" rel="nofollow"><img alt="banner" src="https://landings-cdn.adsterratech.com/referralBanners/png/728%20x%2090%20px.png" /></a>
-        </div>
+    <div id="home-container" class="hidden">
         <h2>Welcome to ARPM Mining</h2>
         <div class="balance-info">
-            <p><strong>Current Balance:</strong> <span id="balance">0.0000</span> ARPM</p>
+            <p><strong>Balance:</strong> <span id="balance">0.0000</span> ARPM</p>
         </div>
         <div id="mining-area">
-            <div class="mining-circle" id="mining-circle" onclick="startMining()">Start Mining</div>
+            <button class="start-mining-btn" id="start-mining-btn" onclick="startMining()" aria-label="Start Mining Button">Start Mining</button>
+            <div class="timer" id="timer" style="display: none;" aria-label="Start Mining Timer"></div>
         </div>
-        <div id="ad-container" class="ad-container hidden"></div>
-        <div id="bottom-ad-container" class="bottom-ad-container"></div>
+        <div id="ad-container" class="hidden"></div>
     </div>
 
     <!-- Profile Page -->
-    <div id="profile-container" class="profile-container hidden">
-        <div class="custom-ad">
-            <a href="" rel="nofollow"><img alt="banner" src="https://landings-cdn.adsterratech.com/referralBanners/png/728%20x%2090%20px.png" /></a>
-        </div>
-        <h2>Profile</h2>
-        <div class="profile-info">
-            <p><strong>Username:</strong> <span id="profile-username">N/A</span></p>
-            <p><strong>Registration Date:</strong> <span id="profile-registration-date">N/A</span></p>
-            <p><strong>Balance:</strong> <span id="profile-balance">0.0000</span> ARPM</p>
-            <p><strong>Total Referrals:</strong> <span id="profile-referrals">0</span></p>
-            <p><strong>Invite Code:</strong> <span id="profile-unique-code">N/A</span></p>
+    <div id="profile-container" class="container hidden">
+        <div>
+            <h2>Profile</h2>
+            <div class="profile-picture" aria-label="Profile Picture"></div>
+            <div class="profile-info">
+                <p><strong>Username:</strong> <span id="profile-username">N/A</span></p>
+                <p><strong>Registered:</strong> <span id="profile-registration-date">N/A</span></p>
+                <p><strong>Balance:</strong> <span id="profile-balance">0.0000</span> ARPM</p>
+                <p><strong>Referrals:</strong> <span id="profile-referrals">0</span></p>
+                <p><strong>Invite Code:</strong> <span id="profile-unique-code">N/A</span></p>
+            </div>
         </div>
         <button class="logout-btn" onclick="signOutUser()">
             <i class="fas fa-sign-out-alt"></i> Logout
         </button>
-        <div id="profile-ad-container" class="profile-ad-container"></div>
     </div>
 
     <!-- Income Page -->
-    <div id="income-container" class="income-container hidden">
-        <div class="custom-ad">
-            <a href="" rel="nofollow"><img alt="banner" src="https://landings-cdn.adsterratech.com/referralBanners/png/728%20x%2090%20px.png" /></a>
-        </div>
+    <div id="income-container" class="container hidden">
         <h2>Income</h2>
         <div class="balance-info">
             <p><strong>Total Earnings:</strong> <span id="total-earnings">0.0000</span> ARPM</p>
             <p><strong>Tax Status:</strong> <span id="tax-status">Not Completed</span></p>
-            <label><input type="checkbox" id="tax-completed" onchange="updateTaxStatus()"> I have completed the tax form</label>
+            <label><input type="checkbox" id="tax-completed" onchange="updateTaxStatus()"> Tax form completed</label>
         </div>
-        <div class="balance-info mt-3">
-            <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@ARPMMining-l3x7o" target="_blank" class="social-link" onclick="checkSubscription(event)">Subscribe for 1.5x Bonus</a></p>
-            <p><strong>X:</strong> <a href="https://x.com/Arpmmining22?t=qiPsxRQxCobbTth17LcyfQ&s=09" target="_blank" class="social-link" onclick="checkFollow(event)">Follow for 1.5x Bonus</a></p>
+        <div class="income-card youtube-card">
+            <h3>YouTube Subscribe</h3>
+            <p>Earn 5 ARPM by subscribing to our YouTube channel!</p>
+            <button class="btn btn-success" id="youtube-btn" onclick="checkSubscription(event)">Subscribe Now</button>
+            <p id="youtube-status" class="mt-2 hidden">Claimed!</p>
+        </div>
+        <div class="income-card x-card">
+            <h3>X Follow</h3>
+            <p>Earn 5 ARPM by following us on X!</p>
+            <button class="btn btn-success" id="x-btn" onclick="checkFollow(event)">Follow Now</button>
+            <p id="x-status" class="mt-2 hidden">Claimed!</p>
         </div>
     </div>
 
     <!-- Invite Page -->
-    <div id="invite-container" class="invite-container hidden">
-        <div class="custom-ad">
-            <a href="" rel="nofollow"><img alt="banner" src="https://landings-cdn.adsterratech.com/referralBanners/png/728%20x%2090%20px.png" /></a>
-        </div>
+    <div id="invite-container" class="container hidden">
         <h2>Invite</h2>
         <div class="balance-info">
-            <p><strong>Your Invite Code:</strong> <span id="invite-code-display">Loading...</span>
-                <button class="copy-btn" onclick="copyInviteCode()">Copy Code</button>
+            <p><strong>Invite Code:</strong> <span id="invite-code-display">Loading...</span>
+                <button class="copy-btn" onclick="copyInviteCode()">Copy</button>
             </p>
         </div>
     </div>
 
+    <!-- Bottom Navigation -->
     <div class="navbar-bottom" id="navbar-bottom">
-        <a href="#" onclick="navigateTo('home')" class="active">
-            <i class="fas fa-home"></i>Home
-        </a>
-        <a href="#" onclick="navigateTo('invite')">
-            <i class="fas fa-user-plus"></i>Invite
-        </a>
-        <a href="#" onclick="navigateTo('wallet')">
-            <i class="fas fa-wallet"></i>Wallet
-        </a>
-        <a href="#" onclick="navigateTo('income')">
-            <i class="fas fa-money-bill-wave"></i>Income
-        </a>
-        <a href="#" onclick="navigateTo('profile')">
-            <i class="fas fa-user"></i>Profile
-        </a>
+        <a href="#" onclick="navigateTo('home')" class="active"><i class="fas fa-home"></i>Home</a>
+        <a href="#" onclick="navigateTo('invite')"><i class="fas fa-user-plus"></i>Invite</a>
+        <a href="#" onclick="navigateTo('wallet')"><i class="fas fa-wallet"></i>Wallet</a>
+        <a href="#" onclick="navigateTo('income')"><i class="fas fa-money-bill-wave"></i>Income</a>
+        <a href="#" onclick="navigateTo('profile')"><i class="fas fa-user"></i>Profile</a>
     </div>
 
     <script type="module">
-        // Firebase SDK Import
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
         import { getDatabase, ref, get, set, update, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
-        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyB7YhDmQa4MtSzutSwJGGU2F7XR9ubcoqQ",
             authDomain: "arpm-mining.firebaseapp.com",
@@ -455,129 +595,79 @@
             measurementId: "G-8YVW5EK6N1"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getDatabase(app);
-        auth.languageCode = 'en';
 
-        // DOM Elements
-        const loginContainer = document.getElementById('login-container');
-        const signupContainer = document.getElementById('signup-container');
-        const resetContainer = document.getElementById('reset-container');
-        const homeContainer = document.getElementById('home-container');
-        const profileContainer = document.getElementById('profile-container');
-        const incomeContainer = document.getElementById('income-container');
-        const inviteContainer = document.getElementById('invite-container');
-        const navbarBottom = document.getElementById('navbar-bottom');
-        const loginForm = document.getElementById('login-form');
-        const signupForm = document.getElementById('signup-form');
-        const resetForm = document.getElementById('reset-form');
-        const balanceElement = document.getElementById('balance');
-        const miningCircle = document.getElementById('mining-circle');
-        const miningArea = document.getElementById('mining-area');
-        const timerElement = document.getElementById('timer');
+        const containers = {
+            login: document.getElementById('login-container'),
+            signup: document.getElementById('signup-container'),
+            reset: document.getElementById('reset-container'),
+            home: document.getElementById('home-container'),
+            profile: document.getElementById('profile-container'),
+            income: document.getElementById('income-container'),
+            invite: document.getElementById('invite-container'),
+            navbar: document.getElementById('navbar-bottom')
+        };
+        const forms = {
+            login: document.getElementById('login-form'),
+            signup: document.getElementById('signup-form'),
+            reset: document.getElementById('reset-form')
+        };
+        const miningElements = {
+            balance: document.getElementById('balance'),
+            startBtn: document.getElementById('start-mining-btn'),
+            timer: document.getElementById('timer'),
+            ad: document.getElementById('ad-container')
+        };
+        const incomeElements = {
+            youtubeBtn: document.getElementById('youtube-btn'),
+            xBtn: document.getElementById('x-btn'),
+            youtubeStatus: document.getElementById('youtube-status'),
+            xStatus: document.getElementById('x-status')
+        };
 
-        // Ad Configuration
-        const adConfigs = [
-            { key: '9970296ce7f10d2bc088e12491052390', format: 'iframe', height: 250, width: 300, src: '//www.highperformanceformat.com/9970296ce7f10d2bc088e12491052390/invoke.js' },
-            { key: '9bfeb6f22a14d69efdf3e562dfdce0a7', format: 'iframe', height: 90, width: 728, src: '//www.highperformanceformat.com/9bfeb6f22a14d69efdf3e562dfdce0a7/invoke.js' },
-            { key: '7c7e345dbc72be55627fdf0ca84cdfe7', format: 'iframe', height: 600, width: 160, src: '//www.highperformanceformat.com/7c7e345dbc72be55627fdf0ca84cdfe7/invoke.js' },
-            { key: '2345a52613caecb4ac1fb2b6251d8d50', format: 'iframe', height: 300, width: 160, src: '//www.highperformanceformat.com/2345a52613caecb4ac1fb2b6251d8d50/invoke.js' },
-            { key: '5a66defd82bc227e9f6adbbabde3a707', format: 'iframe', height: 50, width: 320, src: '//www.highperformanceformat.com/5a66defd82bc227e9f6adbbabde3a707/invoke.js' },
-            { key: 'f8e69eb7049e83d849bfa3e2a96d5df0', format: 'div', containerId: 'container-f8e69eb7049e83d849bfa3e2a96d5df0', src: '//pl26589695.profitableratecpm.com/f8e69eb7049e83d849bfa3e2a96d5df0/invoke.js' }
-        ];
-
-        // Load Random Ad
-        async function loadRandomAd(containerId) {
+        async function loadAd(containerId) {
             const adContainer = document.getElementById(containerId);
             if (!adContainer) return false;
-            adContainer.innerHTML = '';
+            adContainer.innerHTML = '<p style="font-size: 1rem; color: #fff;">Ad Placeholder (5s)</p>';
             adContainer.classList.remove('hidden');
-            const randomAd = adConfigs[Math.floor(Math.random() * adConfigs.length)];
-            if (randomAd.format === 'iframe') {
-                const iframe = document.createElement('iframe');
-                iframe.width = randomAd.width;
-                iframe.height = randomAd.height;
-                iframe.frameBorder = '0';
-                iframe.scrolling = 'no';
-                adContainer.appendChild(iframe);
-                window.atOptions = { key: randomAd.key, format: 'iframe', height: randomAd.height, width: randomAd.width, params: {} };
-                const script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.src = randomAd.src;
-                script.async = true;
-                adContainer.appendChild(script);
-            } else if (randomAd.format === 'div') {
-                const div = document.createElement('div');
-                div.id = randomAd.containerId;
-                adContainer.appendChild(div);
-                const script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.src = randomAd.src;
-                script.async = true;
-                script.setAttribute('data-cfasync', 'false');
-                adContainer.appendChild(script);
-            }
+            await new Promise(resolve => setTimeout(resolve, 5000));
+            adContainer.classList.add('hidden');
             return true;
         }
 
-        // Page Toggle Functions
-        window.showLogin = function() {
-            loginContainer.style.display = 'block';
-            signupContainer.style.display = 'none';
-            resetContainer.style.display = 'none';
-            homeContainer.style.display = 'none';
-            profileContainer.style.display = 'none';
-            incomeContainer.style.display = 'none';
-            inviteContainer.style.display = 'none';
-            navbarBottom.style.display = 'none';
+        function showPage(page) {
+            Object.values(containers).forEach(c => {
+                if (c.id !== 'navbar-top') c.style.display = 'none';
+            });
+            containers[page].style.display = 'block';
+            containers.navbar.style.display = page === 'login' || page === 'signup' || page === 'reset' ? 'none' : 'flex';
+            document.querySelectorAll('.navbar-bottom a').forEach(link => link.classList.remove('active'));
+            document.querySelector(`.navbar-bottom a[onclick="navigateTo('${page}')"]`)?.classList.add('active');
+            if (page === 'invite') loadInviteCode();
+            if (page === 'profile') loadProfileInfo();
+            if (page === 'home') loadMiningState();
+            if (page === 'income') loadIncomeState();
         }
 
-        window.showSignup = function() {
-            loginContainer.style.display = 'none';
-            signupContainer.style.display = 'block';
-            resetContainer.style.display = 'none';
-            homeContainer.style.display = 'none';
-            profileContainer.style.display = 'none';
-            incomeContainer.style.display = 'none';
-            inviteContainer.style.display = 'none';
-            navbarBottom.style.display = 'none';
-        }
+        window.showLogin = () => showPage('login');
+        window.showSignup = () => showPage('signup');
+        window.showReset = () => showPage('reset');
 
-        window.showReset = function() {
-            loginContainer.style.display = 'none';
-            signupContainer.style.display = 'none';
-            resetContainer.style.display = 'block';
-            homeContainer.style.display = 'none';
-            profileContainer.style.display = 'none';
-            incomeContainer.style.display = 'none';
-            inviteContainer.style.display = 'none';
-            navbarBottom.style.display = 'none';
-        }
-
-        // Login Form Submission
-        loginForm.addEventListener('submit', async (e) => {
+        forms.login.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
-
             try {
                 await signInWithEmailAndPassword(auth, email, password);
-                alert('Login successful!');
-                loginContainer.style.display = 'none';
-                homeContainer.style.display = 'block';
-                navbarBottom.style.display = 'flex';
-                updateBalance();
-                loadMiningState();
+                showPage('home');
             } catch (error) {
-                console.error('Login error:', error.message);
-                alert('Login failed: ' + error.message);
+                alert(`Login failed: ${error.code === 'auth/wrong-password' ? 'Incorrect password' : 'Invalid email or user not found'}`);
             }
         });
 
-        // Registration Form Submission
-        signupForm.addEventListener('submit', async (e) => {
+        forms.signup.addEventListener('submit', async (e) => {
             e.preventDefault();
             const username = document.getElementById('signup-username').value;
             const email = document.getElementById('signup-email').value;
@@ -585,459 +675,293 @@
             const confirmPassword = document.getElementById('signup-confirm-password').value;
             const inviteCode = document.getElementById('signup-invite-code').value;
 
-            if (!username || !email || !password || !confirmPassword) {
-                alert('Please fill in all required fields!');
-                return;
-            }
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
+            if (password !== confirmPassword) return alert('Passwords do not match!');
+            if (inviteCode) {
+                const inviteQuery = query(ref(db, 'users'), orderByChild('uniqueCode'), equalTo(inviteCode));
+                const snapshot = await get(inviteQuery);
+                if (!snapshot.exists()) return alert('Invalid invite code!');
             }
 
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
-                const uniqueCode = generateUniqueCode();
-                const registrationDate = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+                const uniqueCode = Math.floor(10000000 + Math.random() * 90000000).toString();
                 await set(ref(db, 'users/' + user.uid), {
-                    username: username,
-                    email: email,
-                    tokens: 0,
-                    earnings: 0,
-                    inviteCode: inviteCode || null,
-                    uniqueCode: uniqueCode,
-                    registrationDate: registrationDate,
-                    miningStartTime: 0,
-                    miningEndTime: 0,
-                    taxCompleted: false,
-                    referrals: 0
+                    username, email, tokens: 0, earnings: 0, inviteCode: inviteCode || null,
+                    uniqueCode, registrationDate: new Date().toLocaleDateString('en-GB'),
+                    miningStartTime: 0, miningEndTime: 0, taxCompleted: false, referrals: 0,
+                    youtubeBonusClaimed: false, xBonusClaimed: false
                 });
-
-                // Check if the inviteCode matches any existing user's uniqueCode
                 if (inviteCode) {
-                    const usersRef = ref(db, 'users');
-                    const inviteQuery = query(usersRef, orderByChild('uniqueCode'), equalTo(inviteCode));
+                    const inviteQuery = query(ref(db, 'users'), orderByChild('uniqueCode'), equalTo(inviteCode));
                     const snapshot = await get(inviteQuery);
-                    if (snapshot.exists()) {
-                        snapshot.forEach((childSnapshot) => {
-                            const referrerId = childSnapshot.key;
-                            const referrerData = childSnapshot.val();
-                            const newReferrals = (referrerData.referrals || 0) + 1;
-                            update(ref(db, 'users/' + referrerId), { referrals: newReferrals });
-                        });
-                    }
+                    snapshot.forEach((childSnapshot) => {
+                        update(ref(db, 'users/' + childSnapshot.key), { referrals: (childSnapshot.val().referrals || 0) + 1 });
+                    });
                 }
-
-                alert('Registration successful!');
-                showLogin();
+                showPage('login');
             } catch (error) {
-                console.error('Registration error:', error.message);
-                alert('Registration failed: ' + error.message);
+                alert(`Registration failed: ${error.message}`);
             }
         });
 
-        // Password Reset Form Submission
-        resetForm.addEventListener('submit', async (e) => {
+        forms.reset.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('reset-email').value;
+            try {
+                await sendPasswordResetEmail(auth, email);
+                alert('Password reset link sent!');
+                showPage('login');
+            } catch (error) {
+                alert(`Password reset failed: ${error.message}`);
+            }
+        });
 
-            if (!email) {
-                alert('Please enter your email!');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                showPage('home');
+                updateBalance();
+                loadMiningState();
+            } else {
+                showPage('login');
+            }
+        });
+
+        window.startMining = async () => {
+            if (!auth.currentUser) return alert('Please log in to start mining.');
+            const userRef = ref(db, 'users/' + auth.currentUser.uid);
+            const snapshot = await get(userRef);
+            const userData = snapshot.val() || {};
+            const currentTime = Date.now();
+            if (currentTime < userData.miningEndTime) {
+                alert('Mining session already in progress.');
+                miningElements.startBtn.disabled = true;
                 return;
             }
 
-            try {
-                await sendPasswordResetEmail(auth, email);
-                alert('Password reset link has been sent to your email!');
-                showLogin();
-            } catch (error) {
-                console.error('Password reset error:', error.message);
-                alert('Password reset failed: ' + error.message);
+            const adLoaded = await loadAd('ad-container');
+            if (!adLoaded) {
+                alert('Failed to load ad. Please try again.');
+                return;
             }
-        });
 
-        // Authentication State Check
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                console.log('User is logged in:', user.uid);
-                loginContainer.style.display = 'none';
-                signupContainer.style.display = 'none';
-                resetContainer.style.display = 'none';
-                homeContainer.style.display = 'block';
-                profileContainer.style.display = 'none';
-                incomeContainer.style.display = 'none';
-                inviteContainer.style.display = 'none';
-                navbarBottom.style.display = 'flex';
-                updateBalance();
-                loadMiningState();
-                loadProfileInfo();
-                loadRandomAd('bottom-ad-container');
-                loadProfileAds();
-            } else {
-                console.log('User is not logged in');
-                loginContainer.style.display = 'block';
-                signupContainer.style.display = 'none';
-                resetContainer.style.display = 'none';
-                homeContainer.style.display = 'none';
-                profileContainer.style.display = 'none';
-                incomeContainer.style.display = 'none';
-                inviteContainer.style.display = 'none';
-                navbarBottom.style.display = 'none';
-            }
-        });
-
-        // Update Balance
-        async function updateBalance() {
-            if (auth.currentUser) {
-                const userId = auth.currentUser.uid;
-                const userRef = ref(db, 'users/' + userId);
-                try {
-                    const snapshot = await get(userRef);
-                    const userData = snapshot.val() || {};
-                    balanceElement.textContent = (userData.tokens || 0).toFixed(4);
-                    document.getElementById('total-earnings').textContent = (userData.earnings || 0).toFixed(4);
-                    document.getElementById('profile-balance').textContent = (userData.tokens || 0).toFixed(4);
-                } catch (error) {
-                    console.error('Balance update error:', error.message);
-                    alert('Error loading balance: ' + error.message);
-                }
-            }
-        }
-
-        // Start Mining
-        window.startMining = async function() {
-            if (!auth.currentUser) return;
-            const userId = auth.currentUser.uid;
-            const userRef = ref(db, 'users/' + userId);
-            try {
-                const snapshot = await get(userRef);
-                const userData = snapshot.val() || {};
-                const currentTime = Date.now();
-                const miningEndTime = userData.miningEndTime || 0;
-
-                if (currentTime < miningEndTime) {
-                    miningCircle.classList.add('disabled');
-                    return;
-                }
-
-                const adLoaded = await loadRandomAd('ad-container');
-                if (adLoaded) {
-                    setTimeout(async () => {
-                        const miningDuration = 6 * 60 * 60 * 1000; // 6 hours
-                        const startTime = Date.now();
-                        const endTime = startTime + miningDuration;
-                        await update(userRef, {
-                            miningStartTime: startTime,
-                            miningEndTime: endTime,
-                            tokens: userData.tokens || 0
-                        });
-                        miningCircle.style.display = 'none';
-                        const timerDiv = document.createElement('div');
-                        timerDiv.className = 'timer';
-                        timerDiv.id = 'timer';
-                        miningArea.innerHTML = '';
-                        miningArea.appendChild(timerDiv);
-                        startTimer(endTime);
-                        miningCircle.classList.add('disabled');
-                    }, 1000);
-                } else {
-                    alert('Failed to load ad. Please try again.');
-                }
-            } catch (error) {
-                console.error('Mining error:', error.message);
-                alert('Error starting mining: ' + error.message);
-            }
+            const miningDuration = 6 * 3600 * 1000;
+            const startTime = Date.now();
+            const endTime = startTime + miningDuration;
+            await update(userRef, { miningStartTime: startTime, miningEndTime: endTime });
+            miningElements.startBtn.style.display = 'none';
+            miningElements.timer.style.display = 'flex';
+            startTimer(endTime);
+            miningElements.startBtn.disabled = true;
         };
 
-        // Timer and Token Increment
         function startTimer(endTime) {
-            const totalDuration = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
-            const totalSeconds = totalDuration / 1000; // Total seconds
-            const totalTokens = 2; // 2 tokens for 6 hours
-            const tokenPerSecond = totalTokens / totalSeconds; // Tokens per second
+            const totalDuration = 6 * 3600 * 1000;
+            const totalTokens = 3;
+            const minutesPerUpdate = 360;
+            const tokenPerMinute = totalTokens / minutesPerUpdate;
+            let lastUpdate = Date.now();
 
-            const timerDiv = document.getElementById('timer');
             const interval = setInterval(async () => {
-                const now = Date.now();
-                const timeLeft = endTime - now;
+                const currentTime = Date.now();
+                const timeLeft = endTime - currentTime;
+
                 if (timeLeft <= 0) {
                     clearInterval(interval);
-                    timerDiv.textContent = '06:00:00';
-                    miningCircle.style.display = 'block';
-                    miningCircle.classList.remove('disabled');
-                    const userId = auth.currentUser.uid;
-                    const userRef = ref(db, 'users/' + userId);
-                    try {
+                    miningElements.timer.textContent = '06:00:00';
+                    miningElements.timer.style.display = 'none';
+                    miningElements.startBtn.style.display = 'block';
+                    miningElements.startBtn.disabled = false;
+                    if (auth.currentUser) {
+                        const userRef = ref(db, 'users/' + auth.currentUser.uid);
                         const snapshot = await get(userRef);
                         const userData = snapshot.val() || {};
                         let earnedTokens = totalTokens;
-                        if (userData.taxCompleted) {
-                            earnedTokens *= 1.5; // 1.5x bonus if tax completed
-                        }
-                        const newTokens = (userData.tokens || 0) + earnedTokens;
-                        const newEarnings = (userData.earnings || 0) + earnedTokens;
-                        await update(userRef, { tokens: newTokens, earnings: newEarnings });
+                        if (userData.taxCompleted) earnedTokens *= 1.5;
+                        await update(userRef, {
+                            tokens: (userData.tokens || 0) + earnedTokens,
+                            earnings: (userData.earnings || 0) + earnedTokens,
+                            miningStartTime: 0,
+                            miningEndTime: 0
+                        });
                         updateBalance();
-                    } catch (error) {
-                        console.error('Timer end error:', error.message);
-                        alert('Error updating tokens: ' + error.message);
                     }
                     return;
                 }
+
                 const hours = Math.floor(timeLeft / (1000 * 60 * 60));
                 const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                timerDiv.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                miningElements.timer.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
-                // Increment tokens per second
-                const userId = auth.currentUser.uid;
-                const userRef = ref(db, 'users/' + userId);
-                try {
+                if (currentTime - lastUpdate >= 60 * 1000 && auth.currentUser) {
+                    const userRef = ref(db, 'users/' + auth.currentUser.uid);
                     const snapshot = await get(userRef);
                     const userData = snapshot.val() || {};
-                    const newTokens = (userData.tokens || 0) + tokenPerSecond;
-                    const newEarnings = (userData.earnings || 0) + tokenPerSecond;
+                    const newTokens = (userData.tokens || 0) + tokenPerMinute;
+                    const newEarnings = (userData.earnings || 0) + tokenPerMinute;
                     await update(userRef, { tokens: newTokens, earnings: newEarnings });
                     updateBalance();
-                } catch (error) {
-                    console.error('Token update error:', error.message);
-                    alert('Error updating tokens: ' + error.message);
+                    lastUpdate = currentTime;
                 }
             }, 1000);
         }
 
-        // Load Mining State
         async function loadMiningState() {
             if (!auth.currentUser) return;
-            const userId = auth.currentUser.uid;
-            const userRef = ref(db, 'users/' + userId);
-            try {
-                const snapshot = await get(userRef);
-                const userData = snapshot.val() || {};
-                const currentTime = Date.now();
-                const miningEndTime = userData.miningEndTime || 0;
-
-                if (currentTime < miningEndTime) {
-                    miningCircle.style.display = 'none';
-                    const timerDiv = document.createElement('div');
-                    timerDiv.className = 'timer';
-                    timerDiv.id = 'timer';
-                    miningArea.innerHTML = '';
-                    miningArea.appendChild(timerDiv);
-                    startTimer(miningEndTime);
-                    miningCircle.classList.add('disabled');
-                } else {
-                    miningCircle.style.display = 'block';
-                    miningCircle.classList.remove('disabled');
-                }
-            } catch (error) {
-                console.error('Mining state load error:', error.message);
-                alert('Error loading mining state: ' + error.message);
+            const userRef = ref(db, 'users/' + auth.currentUser.uid);
+            const snapshot = await get(userRef);
+            const userData = snapshot.val() || {};
+            const currentTime = Date.now();
+            if (currentTime < userData.miningEndTime) {
+                miningElements.startBtn.style.display = 'none';
+                miningElements.timer.style.display = 'flex';
+                miningElements.startBtn.disabled = true;
+                startTimer(userData.miningEndTime);
+            } else {
+                miningElements.startBtn.style.display = 'block';
+                miningElements.timer.style.display = 'none';
+                miningElements.startBtn.disabled = false;
             }
         }
 
-        // Load Profile Info
+        async function updateBalance() {
+            if (!auth.currentUser) return;
+            const userRef = ref(db, 'users/' + auth.currentUser.uid);
+            const snapshot = await get(userRef);
+            const userData = snapshot.val() || {};
+            miningElements.balance.textContent = (userData.tokens || 0).toFixed(4);
+            document.getElementById('total-earnings').textContent = (userData.earnings || 0).toFixed(4);
+            document.getElementById('profile-balance').textContent = (userData.tokens || 0).toFixed(4);
+        }
+
         async function loadProfileInfo() {
             if (!auth.currentUser) return;
-            const userId = auth.currentUser.uid;
-            const userRef = ref(db, 'users/' + userId);
-            try {
-                const snapshot = await get(userRef);
-                const userData = snapshot.val() || {};
-                document.getElementById('profile-username').textContent = userData.username || 'N/A';
-                document.getElementById('profile-registration-date').textContent = userData.registrationDate || 'N/A';
-                document.getElementById('profile-balance').textContent = (userData.tokens || 0).toFixed(4);
-                document.getElementById('profile-referrals').textContent = userData.referrals || 0;
-                document.getElementById('profile-unique-code').textContent = userData.uniqueCode || 'N/A';
-            } catch (error) {
-                console.error('Profile info load error:', error.message);
-                alert('Error loading profile info: ' + error.message);
-            }
+            const userRef = ref(db, 'users/' + auth.currentUser.uid);
+            const snapshot = await get(userRef);
+            const userData = snapshot.val() || {};
+            document.getElementById('profile-username').textContent = userData.username || 'N/A';
+            document.getElementById('profile-registration-date').textContent = userData.registrationDate || 'N/A';
+            document.getElementById('profile-balance').textContent = (userData.tokens || 0).toFixed(4);
+            document.getElementById('profile-referrals').textContent = userData.referrals || 0;
+            document.getElementById('profile-unique-code').textContent = userData.uniqueCode || 'N/A';
         }
 
-        // Load Profile Ads
-        async function loadProfileAds() {
-            const profileAdContainer = document.getElementById('profile-ad-container');
-            if (!profileAdContainer) return;
-
-            async function showNextAd() {
-                const adLoaded = await loadRandomAd('profile-ad-container');
-                if (adLoaded) {
-                    setTimeout(() => {
-                        profileAdContainer.innerHTML = '';
-                        showNextAd();
-                    }, 10000);
-                }
-            }
-            showNextAd();
-        }
-
-        // Update Tax Status
-        window.updateTaxStatus = async function() {
+        window.updateTaxStatus = async () => {
             if (!auth.currentUser) return;
-            const userId = auth.currentUser.uid;
-            const userRef = ref(db, 'users/' + userId);
+            const userRef = ref(db, 'users/' + auth.currentUser.uid);
             const taxCompleted = document.getElementById('tax-completed').checked;
-
-            try {
-                await update(userRef, { taxCompleted });
-                document.getElementById('tax-status').textContent = taxCompleted ? 'Completed' : 'Not Completed';
-                alert('Tax status updated!');
-            } catch (error) {
-                console.error('Tax status update error:', error.message);
-                alert('Error updating tax status: ' + error.message);
-            }
+            await update(userRef, { taxCompleted });
+            document.getElementById('tax-status').textContent = taxCompleted ? 'Completed' : 'Not Completed';
         };
 
-        // Check Subscription and Follow
-        window.checkSubscription = async function(event) {
-            event.preventDefault();
-            if (confirm('Have you subscribed to our YouTube channel?')) {
-                const userId = auth.currentUser.uid;
-                const userRef = ref(db, 'users/' + userId);
-                try {
-                    const snapshot = await get(userRef);
-                    const userData = snapshot.val() || {};
-                    const bonusTokens = (userData.tokens || 0) * 0.5; // 1.5x = 50% extra
-                    const newTokens = (userData.tokens || 0) + bonusTokens;
-                    const newEarnings = (userData.earnings || 0) + bonusTokens;
-                    await update(userRef, { tokens: newTokens, earnings: newEarnings });
-                    updateBalance();
-                    alert(`Bonus applied! You earned ${bonusTokens.toFixed(4)} ARPM.`);
-                    window.open('https://www.youtube.com/@ARPMMining-l3x7o', '_blank');
-                } catch (error) {
-                    console.error('Subscription bonus error:', error.message);
-                    alert('Error applying subscription bonus: ' + error.message);
-                }
+        async function loadIncomeState() {
+            if (!auth.currentUser) return;
+            const userRef = ref(db, 'users/' + auth.currentUser.uid);
+            const snapshot = await get(userRef);
+            const userData = snapshot.val() || {};
+            if (userData.youtubeBonusClaimed) {
+                incomeElements.youtubeBtn.disabled = true;
+                incomeElements.youtubeStatus.classList.remove('hidden');
+            }
+            if (userData.xBonusClaimed) {
+                incomeElements.xBtn.disabled = true;
+                incomeElements.xStatus.classList.remove('hidden');
+            }
+        }
+
+        window.checkSubscription = async (e) => {
+            e.preventDefault();
+            if (!auth.currentUser) return;
+            const userRef = ref(db, 'users/' + auth.currentUser.uid);
+            const snapshot = await get(userRef);
+            const userData = snapshot.val() || {};
+            if (userData.youtubeBonusClaimed) {
+                alert('YouTube bonus already claimed!');
+                return;
+            }
+            if (confirm('Subscribed to our YouTube channel?')) {
+                const bonusTokens = 5;
+                await update(userRef, {
+                    tokens: (userData.tokens || 0) + bonusTokens,
+                    earnings: (userData.earnings || 0) + bonusTokens,
+                    youtubeBonusClaimed: true
+                });
+                updateBalance();
+                alert(`Bonus applied! You earned ${bonusTokens.toFixed(4)} ARPM.`);
+                incomeElements.youtubeBtn.disabled = true;
+                incomeElements.youtubeStatus.classList.remove('hidden');
+                window.open('https://www.youtube.com/@ARPMMining-l3x7o', '_blank');
             } else {
                 window.open('https://www.youtube.com/@ARPMMining-l3x7o', '_blank');
             }
         };
 
-        window.checkFollow = async function(event) {
-            event.preventDefault();
-            if (confirm('Have you followed us on X?')) {
-                const userId = auth.currentUser.uid;
-                const userRef = ref(db, 'users/' + userId);
-                try {
-                    const snapshot = await get(userRef);
-                    const userData = snapshot.val() || {};
-                    const bonusTokens = (userData.tokens || 0) * 0.5; // 1.5x = 50% extra
-                    const newTokens = (userData.tokens || 0) + bonusTokens;
-                    const newEarnings = (userData.earnings || 0) + bonusTokens;
-                    await update(userRef, { tokens: newTokens, earnings: newEarnings });
-                    updateBalance();
-                    alert(`Bonus applied! You earned ${bonusTokens.toFixed(4)} ARPM.`);
-                    window.open('https://x.com/Arpmmining22?t=qiPsxRQxCobbTth17LcyfQ&s=09', '_blank');
-                } catch (error) {
-                    console.error('Follow bonus error:', error.message);
-                    alert('Error applying follow bonus: ' + error.message);
-                }
+        window.checkFollow = async (e) => {
+            e.preventDefault();
+            if (!auth.currentUser) return;
+            const userRef = ref(db, 'users/' + auth.currentUser.uid);
+            const snapshot = await get(userRef);
+            const userData = snapshot.val() || {};
+            if (userData.xBonusClaimed) {
+                alert('X bonus already claimed!');
+                return;
+            }
+            if (confirm('Followed us on X?')) {
+                const bonusTokens = 5;
+                await update(userRef, {
+                    tokens: (userData.tokens || 0) + bonusTokens,
+                    earnings: (userData.earnings || 0) + bonusTokens,
+                    xBonusClaimed: true
+                });
+                updateBalance();
+                alert(`Bonus applied! You earned ${bonusTokens.toFixed(4)} ARPM.`);
+                incomeElements.xBtn.disabled = true;
+                incomeElements.xStatus.classList.remove('hidden');
+                window.open('https://x.com/Arpmmining22', '_blank');
             } else {
-                window.open('https://x.com/Arpmmining22?t=qiPsxRQxCobbTth17LcyfQ&s=09', '_blank');
+                window.open('https://x.com/Arpmmining22', '_blank');
             }
         };
 
-        // Generate 8-digit Unique Code
-        function generateUniqueCode() {
-            return Math.floor(10000000 + Math.random() * 90000000).toString();
-        }
-
-        // Load Invite Code
         async function loadInviteCode() {
             if (!auth.currentUser) return;
-            const userId = auth.currentUser.uid;
-            const userRef = ref(db, 'users/' + userId);
-            try {
-                const snapshot = await get(userRef);
-                const userData = snapshot.val() || {};
-                let uniqueCode = userData.uniqueCode;
-                if (!uniqueCode) {
-                    uniqueCode = generateUniqueCode();
-                    await update(userRef, { uniqueCode: uniqueCode });
-                }
-                document.getElementById('invite-code-display').textContent = uniqueCode;
-            } catch (error) {
-                console.error('Invite code load error:', error.message);
-                alert('Error loading invite code: ' + error.message);
+            const userRef = ref(db, 'users/' + auth.currentUser.uid);
+            const snapshot = await get(userRef);
+            const userData = snapshot.val() || {};
+            let uniqueCode = userData.uniqueCode;
+            if (!uniqueCode) {
+                uniqueCode = Math.floor(10000000 + Math.random() * 90000000).toString();
+                await update(userRef, { uniqueCode });
             }
+            document.getElementById('invite-code-display').textContent = uniqueCode;
         }
 
-        // Copy Invite Code
-        window.copyInviteCode = function() {
+        window.copyInviteCode = () => {
             const inviteCode = document.getElementById('invite-code-display').textContent;
-            navigator.clipboard.writeText(inviteCode).then(() => {
-                alert('Invite code copied to clipboard!');
-            }).catch((error) => {
-                console.error('Copy error:', error);
-                alert('Failed to copy invite code: ' + error.message);
-            });
+            navigator.clipboard.writeText(inviteCode).then(() => alert('Invite code copied!')).catch(() => alert('Failed to copy invite code.'));
         };
 
-        // Navigation Handler
-        window.navigateTo = function(section) {
-            console.log('Navigation clicked:', section);
-            const navLinks = document.querySelectorAll('.navbar-bottom a');
-            navLinks.forEach(link => link.classList.remove('active'));
-            document.querySelector(`.navbar-bottom a[onclick="navigateTo('${section}')"]`).classList.add('active');
-
-            loginContainer.style.display = 'none';
-            signupContainer.style.display = 'none';
-            resetContainer.style.display = 'none';
-            homeContainer.style.display = 'none';
-            profileContainer.style.display = 'none';
-            incomeContainer.style.display = 'none';
-            inviteContainer.style.display = 'none';
-
-            switch (section) {
-                case 'home':
-                    homeContainer.style.display = 'block';
-                    loadRandomAd('bottom-ad-container');
-                    break;
-                case 'wallet':
-                    loadRandomAd('ad-container').then(() => {
-                        setTimeout(() => {
-                            alert('Coming soon');
-                        }, 1000);
-                    });
-                    homeContainer.style.display = 'block';
-                    break;
-                case 'income':
-                    incomeContainer.style.display = 'block';
-                    break;
-                case 'invite':
-                    inviteContainer.style.display = 'block';
-                    loadInviteCode();
-                    break;
-                case 'profile':
-                    profileContainer.style.display = 'block';
-                    loadProfileInfo();
-                    break;
-                default:
-                    console.error('Unknown navigation:', section);
-                    alert('Unknown option!');
+        window.navigateTo = (section) => {
+            if (!auth.currentUser && section !== 'login') {
+                alert('Please log in to access this section.');
+                showPage('login');
+                return;
             }
+            if (section === 'wallet') {
+                alert('Wallet feature coming soon!');
+                section = 'home';
+            }
+            showPage(section);
         };
 
-        // Logout
-        window.signOutUser = async function() {
-            try {
-                await signOut(auth);
-                alert('Logout successful!');
-                loginContainer.style.display = 'block';
-                signupContainer.style.display = 'none';
-                resetContainer.style.display = 'none';
-                homeContainer.style.display = 'none';
-                profileContainer.style.display = 'none';
-                incomeContainer.style.display = 'none';
-                inviteContainer.style.display = 'none';
-                navbarBottom.style.display = 'none';
-            } catch (error) {
-                console.error('Logout error:', error.message);
-                alert('Logout failed: ' + error.message);
-            }
+        window.signOutUser = async () => {
+            await signOut(auth);
+            showPage('login');
         };
+
+        showPage('login');
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+</html>)
