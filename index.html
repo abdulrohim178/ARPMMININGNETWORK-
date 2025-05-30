@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ARPM Mining - Mobile</title>
+    <title>ARPM MINING - MOBILE</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
@@ -19,47 +19,57 @@
             font-family: 'Poppins', sans-serif;
             color: #fff;
             min-height: 100vh;
-            font-size: 16px;
-            overflow-x: hidden;
+            font-size: 18px;
             position: relative;
+            overflow: hidden;
         }
         .container {
             width: 100%;
             max-width: 400px;
             margin: 12px auto;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.5); /* Light overlay for readability */
+            background: rgba(0, 0, 0, 0.5);
             border-radius: 15px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(5px);
             text-align: center;
             position: relative;
             z-index: 1;
-            margin-top: 220px; /* Adjusted to match logo height */
+            margin-top: 220px;
         }
         #home-container {
             position: relative;
             min-height: 500px;
             width: 100%;
             max-width: 400px;
-            margin: 220px auto 20px; /* Adjusted margin for slight bottom space */
+            margin: 220px auto 20px;
             padding: 20px;
             border-radius: 15px;
-            background: rgba(30, 58, 138, 0.8); /* Deep blue with slight transparency */
+            background: rgba(30, 58, 138, 0.8);
             backdrop-filter: blur(5px);
-            box-shadow: 0 4px 16px rgba(30, 58, 138, 0.3); /* Subtle blue shadow for depth */
+            box-shadow: 0 4px 16px rgba(30, 58, 138, 0.3);
         }
         #home-container > * {
             position: relative;
             z-index: 1;
         }
-        h2 {
-            font-size: 1.375rem;
+        #home-container h2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #home-container h2 span:first-child {
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+        #home-container h2 span:last-child {
+            font-size: 27px;
             font-weight: 700;
-            margin-bottom: 15px;
         }
         .form-group {
             margin-bottom: 12px;
+            position: relative;
         }
         .form-control {
             background: rgba(255, 255, 255, 0.2);
@@ -67,18 +77,27 @@
             color: #fff;
             border-radius: 8px;
             padding: 10px;
-            font-size: 1rem;
+            font-size: 18px;
             width: 100%;
         }
         .form-control::placeholder {
             color: #d1d5db;
-            font-size: 1rem;
+            font-size: 18px;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #60a5fa;
+            font-size: 18px;
         }
         .btn {
             border: none;
             border-radius: 8px;
             padding: 10px;
-            font-size: 1.125rem;
+            font-size: 22px;
             width: 100%;
             transition: transform 0.2s;
         }
@@ -98,12 +117,17 @@
             background: linear-gradient(45deg, #22c55e, #86efac);
             border: none;
             color: #fff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 1.125rem;
-            margin: 15px 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            font-size: 30px;
+            margin: 15px auto;
             cursor: pointer;
             transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
         }
         .start-mining-btn:hover {
             transform: translateY(-2px);
@@ -113,29 +137,54 @@
             cursor: not-allowed;
         }
         .timer {
-            width: 110px;
-            height: 110px;
+            width: 200px;
+            height: 200px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 15px auto;
-            font-size: 1rem;
+            font-size: 30px;
         }
-        .balance-info, .profile-info {
+        .balance-info {
+            margin: 15px 0;
+            background: rgba(30, 58, 138, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+        .profile-info {
             margin: 15px 0;
             background: rgba(255, 255, 255, 0.15);
             padding: 10px;
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: 18px;
+        }
+        .profile-info p {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .divider {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #000, transparent);
+            border-radius: 2px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .profile-info p:last-child .divider {
+            display: none;
         }
         .navbar-bottom {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(30, 58, 138, 0.9);
+            background: #1e3a8a;
             display: none;
             justify-content: space-around;
             padding: 8px 0;
@@ -144,13 +193,13 @@
         .navbar-bottom a {
             color: #fff;
             text-decoration: none;
-            font-size: 10px;
+            font-size: 16px;
             flex: 1;
             text-align: center;
         }
         .navbar-bottom a i {
             display: block;
-            font-size: 20px;
+            font-size: 28px;
             margin-bottom: 3px;
         }
         .navbar-bottom a.active {
@@ -159,13 +208,13 @@
         .link {
             color: #60a5fa;
             text-decoration: none;
-            font-size: 0.875rem;
+            font-size: 18px;
         }
         .link:hover {
             text-decoration: underline;
         }
         .footer-text {
-            font-size: 0.875rem;
+            font-size: 18px;
             margin-top: 15px;
         }
         .hidden {
@@ -177,7 +226,7 @@
             color: #fff;
             padding: 6px 10px;
             border-radius: 6px;
-            font-size: 1.125rem;
+            font-size: 22px;
             margin-left: 10px;
         }
         .logout-btn {
@@ -186,16 +235,16 @@
             color: #fff;
             padding: 10px 20px;
             border-radius: 25px;
-            font-size: 1.125rem;
+            font-size: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px auto;
+            margin: 10px auto;
             width: 180px;
         }
         .logout-btn i {
             margin-right: 8px;
-            font-size: 1.2rem;
+            font-size: 24px;
         }
         .income-card {
             background: rgba(255, 255, 255, 0.15);
@@ -216,15 +265,15 @@
             background: linear-gradient(45deg, #000000, #333333);
         }
         .income-card h3 {
-            font-size: 1.375rem;
+            font-size: 27px;
             margin-bottom: 10px;
         }
         .income-card p {
-            font-size: 1rem;
+            font-size: 18px;
             margin-bottom: 15px;
         }
         .income-card .btn {
-            font-size: 1.125rem;
+            font-size: 22px;
             padding: 10px 20px;
             width: auto;
             display: inline-block;
@@ -238,20 +287,67 @@
             height: 120px;
             border-radius: 50%;
             margin: 15px auto;
-            background: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') no-repeat center center;
             background-size: cover;
             border: 3px solid #60a5fa;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
-        #profile-container {
-            padding-bottom: 80px;
-            min-height: calc(100vh - 150px);
+        .profile-picture-options {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            justify-content: space-around;
+            margin-top: 15px;
         }
-        #profile-container .profile-info {
+        .profile-picture-option {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #fff;
+            transition: transform 0.2s;
+        }
+        .profile-picture-option:hover {
+            transform: scale(1.1);
+        }
+        #profile-container, #income-container, #settings-container {
+            max-height: calc(100vh - 280px);
+            overflow-y: auto;
+            padding-bottom: 80px;
+        }
+        #profile-container, #settings-container {
+            position: relative;
+        }
+        #profile-container .profile-info, #settings-container .settings-options {
             flex-grow: 1;
+        }
+        .settings-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            color: #60a5fa;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .settings-icon:hover {
+            transform: rotate(45deg);
+        }
+        .settings-menu {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background: rgba(30, 58, 138, 0.9);
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            display: none;
+        }
+        .settings-menu.active {
+            display: block;
+        }
+        .settings-menu .logout-btn {
+            margin: 0;
+            width: 100%;
+            font-size: 20px;
         }
         .navbar-top {
             position: fixed;
@@ -263,7 +359,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px 0;
-            height: 200px; /* Fixed height for logo */
+            height: 200px;
             z-index: 1000;
         }
         .logo-circle {
@@ -279,170 +375,312 @@
         }
         .logo-circle h1 {
             color: white;
-            font-size: 28px;
+            font-size: 44px;
             margin: 0;
             font-weight: bold;
             text-align: center;
         }
         .logo-circle p {
             color: white;
-            font-size: 16px;
+            font-size: 24px;
             margin: 5px 0 0;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+        }
+        .settings-option {
+            margin: 10px 0;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .settings-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .language-options {
+            display: none;
+            margin-top: 10px;
+        }
+        .language-options.active {
+            display: block;
+        }
+        .language-option {
+            margin: 5px 0;
+            cursor: pointer;
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+        .language-option:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
         @media (max-width: 576px) {
             body {
-                font-size: 14px;
+                font-size: 16px;
             }
             .container {
                 margin: 10px;
                 padding: 15px;
                 max-width: 95%;
-                margin-top: 180px; /* Adjusted for mobile logo height */
+                margin-top: 180px;
             }
             #home-container {
                 min-height: 400px;
                 width: 100%;
                 max-width: 95%;
-                margin: 180px auto 15px; /* Adjusted for mobile */
+                margin: 180px auto 15px;
             }
-            h2 {
-                font-size: 1.25rem;
+            #home-container h2 span:first-child {
+                font-size: 20px;
+            }
+            #home-container h2 span:last-child {
+                font-size: 24px;
+            }
+            .start-mining-btn {
+                width: 150px;
+                height: 150px;
+                font-size: 24px;
+            }
+            .timer {
+                width: 150px;
+                height: 150px;
+                font-size: 24px;
             }
             .form-control {
-                font-size: 0.875rem;
+                font-size: 16px;
                 padding: 8px;
             }
             .form-control::placeholder {
-                font-size: 0.875rem;
+                font-size: 16px;
             }
             .btn, .copy-btn, .logout-btn, .start-mining-btn {
-                font-size: 1rem;
+                font-size: 20px;
                 padding: 8px;
             }
-            .timer {
-                width: 90px;
-                height: 90px;
-                font-size: 0.875rem;
-            }
-            .balance-info, .profile-info {
-                font-size: 0.875rem;
+            .balance-info, .profile-info, .settings-options {
+                font-size: 16px;
                 padding: 8px;
             }
             .navbar-bottom {
                 padding: 6px 0;
             }
             .navbar-bottom a {
-                font-size: 9px;
+                font-size: 14px;
             }
             .navbar-bottom a i {
-                font-size: 18px;
+                font-size: 24px;
             }
             .link {
-                font-size: 0.75rem;
+                font-size: 16px;
             }
             .footer-text {
-                font-size: 0.75rem;
+                font-size: 16px;
             }
             .navbar-top {
                 padding: 15px 0;
-                height: 150px; /* Adjusted for mobile */
+                height: 150px;
             }
             .logo-circle {
                 width: 150px;
                 height: 150px;
             }
             .logo-circle h1 {
-                font-size: 22px;
+                font-size: 36px;
             }
             .logo-circle p {
-                font-size: 14px;
+                font-size: 20px;
             }
             .income-card {
                 padding: 15px;
-                margin: 10px 0;
+                margin: 15px 0;
             }
             .income-card h3 {
-                font-size: 1.25rem;
+                font-size: 24px;
             }
             .income-card p {
-                font-size: 0.875rem;
+                font-size: 16px;
             }
             .income-card .btn {
-                font-size: 1rem;
+                font-size: 20px;
                 padding: 8px 15px;
             }
             .profile-picture {
                 width: 100px;
                 height: 100px;
             }
-            #profile-container {
+            .profile-picture-option {
+                width: 50px;
+                height: 50px;
+            }
+            #profile-container, #income-container, #settings-container {
+                max-height: calc(100vh - 230px);
                 padding-bottom: 60px;
-                min-height: calc(100vh - 120px);
+            }
+            .settings-icon {
+                top: 15px;
+                right: 15px;
+                font-size: 36px;
+            }
+            .settings-menu {
+                top: 40px;
+                right: 15px;
+            }
+            .settings-menu .logout-btn {
+                font-size: 18px;
+            }
+            .settings-option, .language-option {
+                font-size: 16px;
+                padding: 8px;
             }
         }
         @media (max-width: 400px) {
             .container {
                 margin: 8px;
                 padding: 12px;
-                margin-top: 160px; /* Adjusted for smaller mobile */
+                margin-top: 160px;
             }
             #home-container {
                 min-height: 350px;
                 width: 100%;
                 max-width: 95%;
-                margin: 160px auto 10px; /* Adjusted for smaller mobile */
+                margin: 160px auto 10px;
             }
-            h2 {
-                font-size: 1.125rem;
+            #home-container h2 span:first-child {
+                font-size: 18px;
             }
-            .logout-btn {
-                width: 160px;
-                font-size: 1rem;
+            #home-container h2 span:last-child {
+                font-size: 22px;
+            }
+            .start-mining-btn {
+                width: 120px;
+                height: 120px;
+                font-size: 20px;
             }
             .timer {
-                width: 80px;
-                height: 80px;
-                font-size: 0.75rem;
+                width: 120px;
+                height: 120px;
+                font-size: 20px;
             }
             .logo-circle {
                 width: 120px;
                 height: 120px;
             }
             .logo-circle h1 {
-                font-size: 18px;
+                font-size: 30px;
             }
             .logo-circle p {
-                font-size: 12px;
+                font-size: 18px;
             }
             .income-card {
                 padding: 12px;
+                margin: 15px 0;
             }
             .income-card h3 {
-                font-size: 1.125rem;
+                font-size: 22px;
             }
             .income-card p {
-                font-size: 0.75rem;
+                font-size: 14px;
             }
             .income-card .btn {
-                font-size: 0.875rem;
+                font-size: 18px;
                 padding: 6px 12px;
             }
             .profile-picture {
                 width: 80px;
                 height: 80px;
             }
-            #profile-container {
-                padding-bottom: 50px;
-                min-height: calc(100vh - 110px);
+            .profile-picture-option {
+                width: 40px;
+                height: 40px;
             }
+            #profile-container, #income-container, #settings-container {
+                max-height: calc(100vh - 210px);
+                padding-bottom: 50px;
+            }
+            .navbar-bottom a {
+                font-size: 12px;
+            }
+            .navbar-bottom a i {
+                font-size: 20px;
+            }
+            .settings-icon {
+                top: 10px;
+                right: 10px;
+                font-size: 32px;
+            }
+            .settings-menu {
+                top: 35px;
+                right: 10px;
+            }
+            .settings-menu .logout-btn {
+                font-size: 16px;
+            }
+            .settings-option, .language-option {
+                font-size: 14px;
+                padding: 6px;
+            }
+        }
+        .dark-mode {
+            background: #1a1a1a !important;
+            color: #e0e0e0 !important;
+        }
+        .dark-mode .container {
+            background: rgba(40, 40, 40, 0.7) !important;
+        }
+        .dark-mode #home-container {
+            background: rgba(50, 50, 50, 0.8) !important;
+        }
+        .dark-mode .balance-info, .dark-mode .profile-info, .dark-mode .settings-options {
+            background: rgba(60, 60, 60, 0.5) !important;
+        }
+        .dark-mode .navbar-bottom {
+            background: #2a2a2a !important;
+        }
+        .dark-mode .form-control {
+            background: rgba(80, 80, 80, 0.3) !important;
+            color: #e0e0e0 !important;
+        }
+        .dark-mode .form-control::placeholder {
+            color: #b0b0b0 !important;
+        }
+        .dark-mode .btn-primary {
+            background: linear-gradient(45deg, #1e4db7, #4d8aff) !important;
+        }
+        .dark-mode .btn-success {
+            background: linear-gradient(45deg, #1a8e44, #5dd89a) !important;
+        }
+        .dark-mode .btn-danger {
+            background: linear-gradient(45deg, #b32424, #e65c5c) !important;
+        }
+        .dark-mode .start-mining-btn {
+            background: linear-gradient(45deg, #1a8e44, #5dd89a) !important;
+        }
+        .dark-mode .income-card {
+            background: rgba(70, 70, 70, 0.3) !important;
+        }
+        .dark-mode .youtube-card {
+            background: linear-gradient(45deg, #cc0000, #e63333) !important;
+        }
+        .dark-mode .x-card {
+            background: linear-gradient(45deg, #1a1a1a, #404040) !important;
+        }
+        .dark-mode .profile-picture {
+            border-color: #4d8aff !important;
+        }
+        .dark-mode .settings-option, .dark-mode .language-option {
+            background: rgba(70, 70, 70, 0.3) !important;
+        }
+        .dark-mode .settings-option:hover, .dark-mode .language-option:hover {
+            background: rgba(90, 90, 90, 0.4) !important;
         }
     </style>
 </head>
 <body>
     <!-- Top Navigation Bar with Logo -->
-    <div class="navbar-top" id="navbar-top" aria-label="ARPM Mining Logo">
+    <div class="navbar-top" id="navbar-top" aria-label="ARPM MINING LOGO">
         <div class="logo-circle">
             <h1>ARPM</h1>
             <p>MINING</p>
@@ -451,71 +689,75 @@
 
     <!-- Login Page -->
     <div id="login-container" class="container">
-        <h2>Login</h2>
+        <h2>LOGIN</h2>
         <form id="login-form">
             <div class="form-group">
-                <input type="email" class="form-control" id="login-email" placeholder="Email" required>
+                <input type="email" class="form-control" id="login-email" placeholder="EMAIL" required>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="login-password" placeholder="Password" required>
+                <input type="password" class="form-control" id="login-password" placeholder="PASSWORD" required>
+                <i class="fas fa-eye password-toggle" id="toggle-password" onclick="togglePasswordVisibility()"></i>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary">LOGIN</button>
             <p class="footer-text">
-                <a href="#" class="link" onclick="showReset()">Forgot Password?</a><br>
-                Don't have an account? <a href="#" class="link" onclick="showSignup()">Register</a>
+                <a href="#" class="link" onclick="showReset()">FORGOT PASSWORD?</a><br>
+                DON'T HAVE AN ACCOUNT? <a href="#" class="link" onclick="showSignup()">REGISTER</a>
             </p>
         </form>
     </div>
 
     <!-- Registration Page -->
     <div id="signup-container" class="container hidden">
-        <h2>Register</h2>
+        <h2>REGISTER</h2>
         <form id="signup-form">
             <div class="form-group">
-                <input type="text" class="form-control" id="signup-username" placeholder="Username" required>
+                <input type="text" class="form-control" id="signup-username" placeholder="USERNAME" required>
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" id="signup-email" placeholder="Email" required>
+                <input type="email" class="form-control" id="signup-email" placeholder="EMAIL" required>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="signup-password" placeholder="Password" required>
+                <input type="password" class="form-control" id="signup-password" placeholder="PASSWORD" required>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="signup-confirm-password" placeholder="Confirm Password" required>
+                <input type="password" class="form-control" id="signup-confirm-password" placeholder="CONFIRM PASSWORD" required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="signup-invite-code" placeholder="Invite Code (Optional)">
+                <input type="text" class="form-control" id="signup-invite-code" placeholder="INVITE CODE (OPTIONAL)">
             </div>
-            <button type="submit" class="btn btn-success">Register</button>
+            <button type="submit" class="btn btn-success">REGISTER</button>
             <p class="footer-text">
-                Back to Login? <a href="#" class="link" onclick="showLogin()">Login</a>
+                BACK TO LOGIN? <a href="#" class="link" onclick="showLogin()">LOGIN</a>
             </p>
         </form>
     </div>
 
     <!-- Password Reset Page -->
     <div id="reset-container" class="container hidden">
-        <h2>Reset Password</h2>
+        <h2>RESET PASSWORD</h2>
         <form id="reset-form">
             <div class="form-group">
-                <input type="email" class="form-control" id="reset-email" placeholder="Email" required>
+                <input type="email" class="form-control" id="reset-email" placeholder="EMAIL" required>
             </div>
-            <button type="submit" class="btn btn-success">Send Reset Link</button>
+            <button type="submit" class="btn btn-success">SEND RESET LINK</button>
             <p class="footer-text">
-                Back to Login? <a href="#" class="link" onclick="showLogin()">Login</a>
+                BACK TO LOGIN? <a href="#" class="link" onclick="showLogin()">LOGIN</a>
             </p>
         </form>
     </div>
 
     <!-- Home Page -->
     <div id="home-container" class="hidden">
-        <h2>Welcome to ARPM Mining</h2>
+        <h2>
+            <span>WELCOME TO</span>
+            <span>ARPM MINING</span>
+        </h2>
         <div class="balance-info">
-            <p><strong>Balance:</strong> <span id="balance">0.0000</span> ARPM</p>
+            <p><strong>BALANCE:</strong> <span id="balance">0.0000</span> ARPM</p>
         </div>
         <div id="mining-area">
-            <button class="start-mining-btn" id="start-mining-btn" onclick="startMining()" aria-label="Start Mining Button">Start Mining</button>
-            <div class="timer" id="timer" style="display: none;" aria-label="Start Mining Timer"></div>
+            <button class="start-mining-btn" id="start-mining-btn" onclick="startMining()" aria-label="START MINING BUTTON">START MINING</button>
+            <div class="timer" id="timer" style="display: none;" aria-label="START MINING TIMER"></div>
         </div>
         <div id="ad-container" class="hidden"></div>
     </div>
@@ -523,60 +765,93 @@
     <!-- Profile Page -->
     <div id="profile-container" class="container hidden">
         <div>
-            <h2>Profile</h2>
-            <div class="profile-picture" aria-label="Profile Picture"></div>
+            <h2>PROFILE</h2>
+            <i class="fas fa-cog settings-icon" onclick="navigateTo('settings')"></i>
+            <div class="profile-picture" id="profile-picture" aria-label="PROFILE PICTURE"></div>
+            <div class="profile-picture-options">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Boy" class="profile-picture-option" onclick="selectProfilePicture('boy')">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Girl" class="profile-picture-option" onclick="selectProfilePicture('girl')">
+                <img src="https://images.unsplash.com/photo-1574158622682-e40e69881003?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Old Man" class="profile-picture-option" onclick="selectProfilePicture('oldman')">
+                <img src="https://images.unsplash.com/photo-1531123897727-8f054bfc9482?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Old Woman" class="profile-picture-option" onclick="selectProfilePicture('oldwoman')">
+            </div>
             <div class="profile-info">
-                <p><strong>Username:</strong> <span id="profile-username">N/A</span></p>
-                <p><strong>Registered:</strong> <span id="profile-registration-date">N/A</span></p>
-                <p><strong>Balance:</strong> <span id="profile-balance">0.0000</span> ARPM</p>
-                <p><strong>Referrals:</strong> <span id="profile-referrals">0</span></p>
-                <p><strong>Invite Code:</strong> <span id="profile-unique-code">N/A</span></p>
+                <p><strong>USERNAME:</strong> <span id="profile-username">N/A</span><span class="divider"></span></p>
+                <p><strong>REGISTERED:</strong> <span id="profile-registration-date">N/A</span><span class="divider"></span></p>
+                <p><strong>EMAIL:</strong> <span id="profile-email">N/A</span><span class="divider"></span></p>
+                <p><strong>BALANCE:</strong> <span id="profile-balance">0.0000</span> ARPM<span class="divider"></span></p>
+                <p><strong>REFERRALS:</strong> <span id="profile-referrals">0</span><span class="divider"></span></p>
             </div>
         </div>
-        <button class="logout-btn" onclick="signOutUser()">
-            <i class="fas fa-sign-out-alt"></i> Logout
-        </button>
+    </div>
+
+    <!-- Settings Page -->
+    <div id="settings-container" class="container hidden">
+        <h2>SETTINGS</h2>
+        <div class="settings-options">
+            <div class="settings-option" onclick="window.toggleDarkMode()">
+                <span>Dark Mode: </span><span id="dark-mode-status">Off</span>
+            </div>
+            <div class="settings-option" onclick="window.toggleLanguageOptions()">Language</div>
+            <div class="language-options" id="language-options">
+                <div class="language-option" onclick="window.changeLanguage('en')">English</div>
+                <div class="language-option" onclick="window.changeLanguage('bn')">বাংলা</div>
+                <div class="language-option" onclick="window.changeLanguage('hi')">हिंदी</div>
+            </div>
+            <button class="logout-btn" onclick="signOutUser()">
+                <i class="fas fa-sign-out-alt"></i> LOGOUT
+            </button>
+        </div>
     </div>
 
     <!-- Income Page -->
     <div id="income-container" class="container hidden">
-        <h2>Income</h2>
-        <div class="balance-info">
-            <p><strong>Total Earnings:</strong> <span id="total-earnings">0.0000</span> ARPM</p>
-            <p><strong>Tax Status:</strong> <span id="tax-status">Not Completed</span></p>
-            <label><input type="checkbox" id="tax-completed" onchange="updateTaxStatus()"> Tax form completed</label>
-        </div>
+        <h2>INCOME</h2>
         <div class="income-card youtube-card">
-            <h3>YouTube Subscribe</h3>
-            <p>Earn 5 ARPM by subscribing to our YouTube channel!</p>
-            <button class="btn btn-success" id="youtube-btn" onclick="checkSubscription(event)">Subscribe Now</button>
-            <p id="youtube-status" class="mt-2 hidden">Claimed!</p>
+            <h3>YOUTUBE SUBSCRIBE</h3>
+            <p>EARN 5 ARPM BY SUBSCRIBING TO OUR YOUTUBE CHANNEL!</p>
+            <button class="btn btn-success" id="youtube-btn" onclick="checkSubscription(event)">SUBSCRIBE NOW</button>
+            <p id="youtube-status" class="mt-2 hidden">CLAIMED!</p>
         </div>
         <div class="income-card x-card">
-            <h3>X Follow</h3>
-            <p>Earn 5 ARPM by following us on X!</p>
-            <button class="btn btn-success" id="x-btn" onclick="checkFollow(event)">Follow Now</button>
-            <p id="x-status" class="mt-2 hidden">Claimed!</p>
+            <h3>X FOLLOW</h3>
+            <p>EARN 5 ARPM BY FOLLOWING US ON X!</p>
+            <button class="btn btn-success" id="x-btn" onclick="checkFollow(event)">FOLLOW NOW</button>
+            <p id="x-status" class="mt-2 hidden">CLAIMED!</p>
         </div>
     </div>
 
     <!-- Invite Page -->
     <div id="invite-container" class="container hidden">
-        <h2>Invite</h2>
+        <h2>INVITE</h2>
         <div class="balance-info">
-            <p><strong>Invite Code:</strong> <span id="invite-code-display">Loading...</span>
-                <button class="copy-btn" onclick="copyInviteCode()">Copy</button>
+            <p><strong>INVITE CODE:</strong> <span id="invite-code-display">LOADING...</span>
+                <button class="copy-btn" onclick="copyInviteCode()">COPY</button>
             </p>
         </div>
     </div>
 
     <!-- Bottom Navigation -->
     <div class="navbar-bottom" id="navbar-bottom">
-        <a href="#" onclick="navigateTo('home')" class="active"><i class="fas fa-home"></i>Home</a>
-        <a href="#" onclick="navigateTo('invite')"><i class="fas fa-user-plus"></i>Invite</a>
-        <a href="#" onclick="navigateTo('wallet')"><i class="fas fa-wallet"></i>Wallet</a>
-        <a href="#" onclick="navigateTo('income')"><i class="fas fa-money-bill-wave"></i>Income</a>
-        <a href="#" onclick="navigateTo('profile')"><i class="fas fa-user"></i>Profile</a>
+        <a href="#" onclick="navigateTo('home')" class="active">
+            <i class="fas fa-home"></i>
+            <span class="nav-text">HOME</span>
+        </a>
+        <a href="#" onclick="navigateTo('invite')">
+            <i class="fas fa-user-plus"></i>
+            <span class="nav-text">INVITE</span>
+        </a>
+        <a href="#" onclick="navigateTo('wallet')">
+            <i class="fas fa-wallet"></i>
+            <span class="nav-text">WALLET</span>
+        </a>
+        <a href="#" onclick="navigateTo('income')">
+            <i class="fas fa-money-bill-wave"></i>
+            <span class="nav-text">INCOME</span>
+        </a>
+        <a href="#" onclick="navigateTo('profile')">
+            <i class="fas fa-user"></i>
+            <span class="nav-text">PROFILE</span>
+        </a>
     </div>
 
     <script type="module">
@@ -605,6 +880,7 @@
             reset: document.getElementById('reset-container'),
             home: document.getElementById('home-container'),
             profile: document.getElementById('profile-container'),
+            settings: document.getElementById('settings-container'),
             income: document.getElementById('income-container'),
             invite: document.getElementById('invite-container'),
             navbar: document.getElementById('navbar-bottom')
@@ -626,11 +902,14 @@
             youtubeStatus: document.getElementById('youtube-status'),
             xStatus: document.getElementById('x-status')
         };
+        let isDarkMode = false;
+        let currentLanguage = 'en';
+        const languageOptions = document.getElementById('language-options');
 
         async function loadAd(containerId) {
             const adContainer = document.getElementById(containerId);
             if (!adContainer) return false;
-            adContainer.innerHTML = '<p style="font-size: 1rem; color: #fff;">Ad Placeholder (5s)</p>';
+            adContainer.innerHTML = '<p style="font-size: 18px; color: #fff;">AD PLACEHOLDER (5S)</p>';
             adContainer.classList.remove('hidden');
             await new Promise(resolve => setTimeout(resolve, 5000));
             adContainer.classList.add('hidden');
@@ -649,6 +928,9 @@
             if (page === 'profile') loadProfileInfo();
             if (page === 'home') loadMiningState();
             if (page === 'income') loadIncomeState();
+            if (page === 'settings') {
+                updateSettingsUI();
+            }
         }
 
         window.showLogin = () => showPage('login');
@@ -663,7 +945,7 @@
                 await signInWithEmailAndPassword(auth, email, password);
                 showPage('home');
             } catch (error) {
-                alert(`Login failed: ${error.code === 'auth/wrong-password' ? 'Incorrect password' : 'Invalid email or user not found'}`);
+                alert(`LOGIN FAILED: ${error.code === 'auth/wrong-password' ? 'INCORRECT PASSWORD' : 'INVALID EMAIL OR USER NOT FOUND'}`);
             }
         });
 
@@ -675,11 +957,11 @@
             const confirmPassword = document.getElementById('signup-confirm-password').value;
             const inviteCode = document.getElementById('signup-invite-code').value;
 
-            if (password !== confirmPassword) return alert('Passwords do not match!');
+            if (password !== confirmPassword) return alert('PASSWORDS DO NOT MATCH!');
             if (inviteCode) {
                 const inviteQuery = query(ref(db, 'users'), orderByChild('uniqueCode'), equalTo(inviteCode));
                 const snapshot = await get(inviteQuery);
-                if (!snapshot.exists()) return alert('Invalid invite code!');
+                if (!snapshot.exists()) return alert('INVALID INVITE CODE!');
             }
 
             try {
@@ -687,10 +969,22 @@
                 const user = userCredential.user;
                 const uniqueCode = Math.floor(10000000 + Math.random() * 90000000).toString();
                 await set(ref(db, 'users/' + user.uid), {
-                    username, email, tokens: 0, earnings: 0, inviteCode: inviteCode || null,
-                    uniqueCode, registrationDate: new Date().toLocaleDateString('en-GB'),
-                    miningStartTime: 0, miningEndTime: 0, taxCompleted: false, referrals: 0,
-                    youtubeBonusClaimed: false, xBonusClaimed: false
+                    username: username || "N/A",
+                    email: email,
+                    tokens: 0,
+                    earnings: 0,
+                    inviteCode: inviteCode || null,
+                    uniqueCode: uniqueCode,
+                    registrationDate: new Date().toLocaleDateString('en-GB'),
+                    miningStartTime: 0,
+                    miningEndTime: 0,
+                    taxCompleted: false,
+                    referrals: 0,
+                    youtubeBonusClaimed: false,
+                    xBonusClaimed: false,
+                    profilePicture: 'default',
+                    darkMode: false,
+                    language: 'en'
                 });
                 if (inviteCode) {
                     const inviteQuery = query(ref(db, 'users'), orderByChild('uniqueCode'), equalTo(inviteCode));
@@ -701,7 +995,7 @@
                 }
                 showPage('login');
             } catch (error) {
-                alert(`Registration failed: ${error.message}`);
+                alert(`REGISTRATION FAILED: ${error.message}`);
             }
         });
 
@@ -710,10 +1004,10 @@
             const email = document.getElementById('reset-email').value;
             try {
                 await sendPasswordResetEmail(auth, email);
-                alert('Password reset link sent!');
+                alert('PASSWORD RESET LINK SENT!');
                 showPage('login');
             } catch (error) {
-                alert(`Password reset failed: ${error.message}`);
+                alert(`PASSWORD RESET FAILED: ${error.message}`);
             }
         });
 
@@ -722,26 +1016,28 @@
                 showPage('home');
                 updateBalance();
                 loadMiningState();
+                loadProfileInfo();
+                loadSettings();
             } else {
                 showPage('login');
             }
         });
 
         window.startMining = async () => {
-            if (!auth.currentUser) return alert('Please log in to start mining.');
+            if (!auth.currentUser) return alert('PLEASE LOG IN TO START MINING.');
             const userRef = ref(db, 'users/' + auth.currentUser.uid);
             const snapshot = await get(userRef);
             const userData = snapshot.val() || {};
             const currentTime = Date.now();
             if (currentTime < userData.miningEndTime) {
-                alert('Mining session already in progress.');
+                alert('MINING SESSION ALREADY IN PROGRESS.');
                 miningElements.startBtn.disabled = true;
                 return;
             }
 
             const adLoaded = await loadAd('ad-container');
             if (!adLoaded) {
-                alert('Failed to load ad. Please try again.');
+                alert('FAILED TO LOAD AD. PLEASE TRY AGAIN.');
                 return;
             }
 
@@ -831,28 +1127,69 @@
             const snapshot = await get(userRef);
             const userData = snapshot.val() || {};
             miningElements.balance.textContent = (userData.tokens || 0).toFixed(4);
-            document.getElementById('total-earnings').textContent = (userData.earnings || 0).toFixed(4);
             document.getElementById('profile-balance').textContent = (userData.tokens || 0).toFixed(4);
         }
 
         async function loadProfileInfo() {
             if (!auth.currentUser) return;
             const userRef = ref(db, 'users/' + auth.currentUser.uid);
-            const snapshot = await get(userRef);
-            const userData = snapshot.val() || {};
-            document.getElementById('profile-username').textContent = userData.username || 'N/A';
-            document.getElementById('profile-registration-date').textContent = userData.registrationDate || 'N/A';
-            document.getElementById('profile-balance').textContent = (userData.tokens || 0).toFixed(4);
-            document.getElementById('profile-referrals').textContent = userData.referrals || 0;
-            document.getElementById('profile-unique-code').textContent = userData.uniqueCode || 'N/A';
+            try {
+                const snapshot = await get(userRef);
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    document.getElementById('profile-username').textContent = userData.username || 'N/A';
+                    document.getElementById('profile-registration-date').textContent = userData.registrationDate || 'N/A';
+                    document.getElementById('profile-email').textContent = userData.email || 'N/A';
+                    document.getElementById('profile-balance').textContent = (userData.tokens || 0).toFixed(4);
+                    document.getElementById('profile-referrals').textContent = userData.referrals || 0;
+                    updateProfilePicture(userData.profilePicture);
+                } else {
+                    console.log("NO USER DATA FOUND IN DATABASE. SAVING DEFAULT DATA...");
+                    await set(ref(db, 'users/' + auth.currentUser.uid), {
+                        username: "N/A",
+                        email: auth.currentUser.email,
+                        tokens: 0,
+                        earnings: 0,
+                        uniqueCode: Math.floor(10000000 + Math.random() * 90000000).toString(),
+                        registrationDate: new Date().toLocaleDateString('en-GB'),
+                        miningStartTime: 0,
+                        miningEndTime: 0,
+                        taxCompleted: false,
+                        referrals: 0,
+                        youtubeBonusClaimed: false,
+                        xBonusClaimed: false,
+                        profilePicture: 'default',
+                        darkMode: false,
+                        language: 'en'
+                    });
+                    await loadProfileInfo();
+                }
+            } catch (error) {
+                console.error("ERROR LOADING PROFILE INFO:", error);
+                alert("FAILED TO LOAD PROFILE INFO. PLEASE TRY AGAIN.");
+            }
         }
 
-        window.updateTaxStatus = async () => {
-            if (!auth.currentUser) return;
+        function updateProfilePicture(pictureType) {
+            const profilePicture = document.getElementById('profile-picture');
+            const pictureUrls = {
+                'default': 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                'boy': 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                'girl': 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                'oldman': 'https://images.unsplash.com/photo-1574158622682-e40e69881003?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                'oldwoman': 'https://images.unsplash.com/photo-1531123897727-8f054bfc9482?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'
+            };
+            profilePicture.style.backgroundImage = `url('${pictureUrls[pictureType]}')`;
+        }
+
+        window.selectProfilePicture = async (pictureType) => {
+            if (!auth.currentUser) return alert('PLEASE LOG IN TO SELECT A PROFILE PICTURE.');
             const userRef = ref(db, 'users/' + auth.currentUser.uid);
-            const taxCompleted = document.getElementById('tax-completed').checked;
-            await update(userRef, { taxCompleted });
-            document.getElementById('tax-status').textContent = taxCompleted ? 'Completed' : 'Not Completed';
+            await update(userRef, { profilePicture: pictureType });
+            updateProfilePicture(pictureType);
+            document.querySelectorAll('.profile-picture-option').forEach(option => {
+                option.style.display = 'none';
+            });
         };
 
         async function loadIncomeState() {
@@ -877,10 +1214,10 @@
             const snapshot = await get(userRef);
             const userData = snapshot.val() || {};
             if (userData.youtubeBonusClaimed) {
-                alert('YouTube bonus already claimed!');
+                alert('YOUTUBE BONUS ALREADY CLAIMED!');
                 return;
             }
-            if (confirm('Subscribed to our YouTube channel?')) {
+            if (confirm('SUBSCRIBED TO OUR YOUTUBE CHANNEL?')) {
                 const bonusTokens = 5;
                 await update(userRef, {
                     tokens: (userData.tokens || 0) + bonusTokens,
@@ -888,7 +1225,7 @@
                     youtubeBonusClaimed: true
                 });
                 updateBalance();
-                alert(`Bonus applied! You earned ${bonusTokens.toFixed(4)} ARPM.`);
+                alert(`BONUS APPLIED! YOU EARNED ${bonusTokens.toFixed(4)} ARPM.`);
                 incomeElements.youtubeBtn.disabled = true;
                 incomeElements.youtubeStatus.classList.remove('hidden');
                 window.open('https://www.youtube.com/@ARPMMining-l3x7o', '_blank');
@@ -904,10 +1241,10 @@
             const snapshot = await get(userRef);
             const userData = snapshot.val() || {};
             if (userData.xBonusClaimed) {
-                alert('X bonus already claimed!');
+                alert('X BONUS ALREADY CLAIMED!');
                 return;
             }
-            if (confirm('Followed us on X?')) {
+            if (confirm('FOLLOWED US ON X?')) {
                 const bonusTokens = 5;
                 await update(userRef, {
                     tokens: (userData.tokens || 0) + bonusTokens,
@@ -915,7 +1252,7 @@
                     xBonusClaimed: true
                 });
                 updateBalance();
-                alert(`Bonus applied! You earned ${bonusTokens.toFixed(4)} ARPM.`);
+                alert(`BONUS APPLIED! YOU EARNED ${bonusTokens.toFixed(4)} ARPM.`);
                 incomeElements.xBtn.disabled = true;
                 incomeElements.xStatus.classList.remove('hidden');
                 window.open('https://x.com/Arpmmining22', '_blank');
@@ -939,17 +1276,17 @@
 
         window.copyInviteCode = () => {
             const inviteCode = document.getElementById('invite-code-display').textContent;
-            navigator.clipboard.writeText(inviteCode).then(() => alert('Invite code copied!')).catch(() => alert('Failed to copy invite code.'));
+            navigator.clipboard.writeText(inviteCode).then(() => alert('INVITE CODE COPIED!')).catch(() => alert('FAILED TO COPY INVITE CODE.'));
         };
 
         window.navigateTo = (section) => {
             if (!auth.currentUser && section !== 'login') {
-                alert('Please log in to access this section.');
+                alert('PLEASE LOG IN TO ACCESS THIS SECTION.');
                 showPage('login');
                 return;
             }
             if (section === 'wallet') {
-                alert('Wallet feature coming soon!');
+                alert('WALLET FEATURE COMING SOON!');
                 section = 'home';
             }
             showPage(section);
@@ -960,8 +1297,144 @@
             showPage('login');
         };
 
+        window.togglePasswordVisibility = () => {
+            const passwordInput = document.getElementById('login-password');
+            const toggleIcon = document.getElementById('toggle-password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        };
+
+        window.toggleDarkMode = () => {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            const darkModeStatus = document.getElementById('dark-mode-status');
+            if (darkModeStatus) {
+                darkModeStatus.textContent = isDarkMode ? 'On' : 'Off';
+            }
+            if (auth.currentUser) {
+                const userRef = ref(db, 'users/' + auth.currentUser.uid);
+                update(userRef, { darkMode: isDarkMode });
+            }
+        };
+
+        window.toggleLanguageOptions = () => {
+            if (languageOptions) {
+                languageOptions.classList.toggle('active');
+            }
+        };
+
+        window.changeLanguage = (lang) => {
+            currentLanguage = lang;
+            if (languageOptions) {
+                languageOptions.classList.remove('active');
+            }
+            if (auth.currentUser) {
+                const userRef = ref(db, 'users/' + auth.currentUser.uid);
+                update(userRef, { language: lang });
+            }
+            updateLanguage();
+        };
+
+        function updateLanguage() {
+            const translations = {
+                en: {
+                    login: 'LOGIN',
+                    register: 'REGISTER',
+                    reset: 'RESET PASSWORD',
+                    home: 'HOME',
+                    invite: 'INVITE',
+                    wallet: 'WALLET',
+                    income: 'INCOME',
+                    profile: 'PROFILE',
+                    settings: 'SETTINGS',
+                    darkMode: 'Dark Mode',
+                    language: 'Language',
+                    logout: 'LOGOUT'
+                },
+                bn: {
+                    login: 'লগইন',
+                    register: 'রেজিস্টার',
+                    reset: 'পাসওয়ার্ড রিসেট',
+                    home: 'হোম',
+                    invite: 'আমন্ত্রণ',
+                    wallet: 'ওয়ালেট',
+                    income: 'আয়',
+                    profile: 'প্রোফাইল',
+                    settings: 'সেটিংস',
+                    darkMode: 'ডার্ক মোড',
+                    language: 'ভাষা',
+                    logout: 'লগ আউট'
+                },
+                hi: {
+                    login: 'लॉगिन',
+                    register: 'रजिस्टर',
+                    reset: 'पासवर्ड रीसेट',
+                    home: 'होम',
+                    invite: 'आमंत्रण',
+                    wallet: 'वॉलेट',
+                    income: 'आय',
+                    profile: 'प्रोफ़ाइल',
+                    settings: 'सेटिंग्स',
+                    darkMode: 'डार्क मोड',
+                    language: 'भाषा',
+                    logout: 'लॉग आउट'
+                }
+            };
+            const t = translations[currentLanguage];
+            document.querySelector('#login-container h2').textContent = t.login;
+            document.querySelector('#signup-container h2').textContent = t.register;
+            document.querySelector('#reset-container h2').textContent = t.reset;
+            document.querySelector('#home-container h2 span:last-child').textContent = t.home;
+            document.querySelector('#invite-container h2').textContent = t.invite;
+            document.querySelector('#income-container h2').textContent = t.income;
+            document.querySelector('#profile-container h2').textContent = t.profile;
+            document.querySelector('#settings-container h2').textContent = t.settings;
+
+            const navLinks = document.querySelectorAll('.navbar-bottom a');
+            navLinks[0].querySelector('.nav-text').textContent = t.home;
+            navLinks[1].querySelector('.nav-text').textContent = t.invite;
+            navLinks[2].querySelector('.nav-text').textContent = t.wallet;
+            navLinks[3].querySelector('.nav-text').textContent = t.income;
+            navLinks[4].querySelector('.nav-text').textContent = t.profile;
+
+            const darkModeOption = document.querySelector('.settings-option:nth-child(1) span:first-child');
+            if (darkModeOption) darkModeOption.textContent = `${t.darkMode}: `;
+            const languageOption = document.querySelector('.settings-option:nth-child(2)');
+            if (languageOption) languageOption.textContent = t.language;
+            const logoutBtn = document.querySelector('.logout-btn');
+            if (logoutBtn) logoutBtn.lastChild.textContent = ` ${t.logout}`;
+        }
+
+        async function loadSettings() {
+            if (!auth.currentUser) return;
+            const userRef = ref(db, 'users/' + auth.currentUser.uid);
+            const snapshot = await get(userRef);
+            const userData = snapshot.val() || {};
+            isDarkMode = userData.darkMode || false;
+            currentLanguage = userData.language || 'en';
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            const darkModeStatus = document.getElementById('dark-mode-status');
+            if (darkModeStatus) {
+                darkModeStatus.textContent = isDarkMode ? 'On' : 'Off';
+            }
+            updateLanguage();
+        }
+
+        function updateSettingsUI() {
+            const darkModeStatus = document.getElementById('dark-mode-status');
+            if (darkModeStatus) {
+                darkModeStatus.textContent = isDarkMode ? 'On' : 'Off';
+            }
+        }
+
         showPage('login');
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>)
+</html>
